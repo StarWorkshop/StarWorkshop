@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" width="760" height="270" role="img" aria-label="Research journey: wavrail streaming speech recognition, then dialogvox end-to-end spoken dialogue">
+  <style>
+    :root { color-scheme: light dark; }
+    .hd   { font: 600 15px ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #1c2b4a; }
+    .lb   { font: 500 11px ui-sans-serif, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #5c6b85; }
+    .mono { font: 500 10px ui-monospace, monospace; fill: #5c6b85; }
+    .blue { stroke: #2563eb; } .amber { stroke: #d97706; }
+    .fblue { fill: #2563eb; } .famber { fill: #d97706; }
+    .rail  { stroke-width: 2.4; fill: none; stroke-linecap: round; }
+    .tie   { stroke-width: 2; opacity: .55; }
+    .chunk { animation: ride 3s linear infinite both; }
+    @keyframes ride { from { transform: translateX(0) } to { transform: translateX(196px) } }
+    .emit  { animation: emit 3s steps(1, end) infinite both; }
+    @keyframes emit { 0%,58% { opacity: 0 } 62%,78% { opacity: 1 } 82%,100% { opacity: 0 } }
+    .beam  { fill: none; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .7;
+             animation: flow 2.2s linear infinite both; }
+    @keyframes flow { to { stroke-dashoffset: -16 } }
+    .cell  { animation: light 4.2s steps(1, end) infinite both; opacity: .2; }
+    @keyframes light { 8%,26% { opacity: 1 } }
+    .c2 { animation-delay: .35s } .c3 { animation-delay: .7s } .c4 { animation-delay: 1.05s }
+    .c5 { animation-delay: 1.4s } .c6 { animation-delay: 1.75s } .c7 { animation-delay: 2.1s } .c8 { animation-delay: 2.45s }
+    .loop { fill: none; stroke-width: 1.8; stroke-dasharray: 7 5; animation: flow 2.8s linear infinite both; }
+    .caret { animation: blink 1s step-end infinite both; }
+    @keyframes blink { 50% { opacity: 0 } }
+    .axis { stroke: #a3b1c9; stroke-width: 1.5; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .hd { fill: #e8eefc } .lb, .mono { fill: #a3b1c9 } .axis { stroke: #46546e }
+    }
+  </style>
+
+  <!-- ═══ Act 1 · wavrail ═══ -->
+  <text class="hd" x="30" y="30">① wavrail · 流式语音识别</text>
+  <text class="mono" x="30" y="48">2025-01 → 2026-08 · 311 commits</text>
+  <!-- streaming rail with riding chunk and emission ticks -->
+  <g transform="translate(36,84)">
+    <path class="rail blue" d="M0 8 L 210 8"/>
+    <path class="rail blue" d="M0 26 L 210 26"/>
+    <g>
+      <line class="tie blue" x1="10" y1="8" x2="10" y2="26"/>
+      <line class="tie blue" x1="40" y1="8" x2="40" y2="26"/>
+      <line class="tie blue" x1="70" y1="8" x2="70" y2="26"/>
+      <line class="tie blue" x1="100" y1="8" x2="100" y2="26"/>
+      <line class="tie blue" x1="130" y1="8" x2="130" y2="26"/>
+      <line class="tie blue" x1="160" y1="8" x2="160" y2="26"/>
+      <line class="tie blue" x1="190" y1="8" x2="190" y2="26"/>
+    </g>
+    <g class="chunk"><rect class="fblue" x="0" y="12" width="18" height="10" rx="3" opacity=".9"/></g>
+    <text class="emit fblue" x="150" y="-4" style="font:600 12px ui-monospace,monospace">▮token</text>
+  </g>
+  <!-- CTC beam fan -->
+  <g transform="translate(268,84)">
+    <path class="beam blue" d="M0 17 C 26 2, 52 2, 78 10"/>
+    <path class="beam blue" d="M0 17 C 26 17, 52 17, 78 17" style="animation-delay:-.7s"/>
+    <path class="beam blue" d="M0 17 C 26 32, 52 32, 78 24" style="animation-delay:-1.4s"/>
+    <circle class="fblue" cx="0" cy="17" r="4"/>
+    <circle class="fblue pulse" cx="82" cy="17" r="5"/>
+    <style>.pulse{animation:pulse 2s ease-in-out infinite both;transform-origin:center;transform-box:fill-box}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.65}}</style>
+  </g>
+  <text class="lb" x="36" y="146">log-mel → CTC 前缀束 → 帧同步发射 · 强制对齐 · 中英文 CER/WER · 延迟核算</text>
+
+  <!-- ═══ Act 2 · dialogvox ═══ -->
+  <text class="hd" x="420" y="30">② dialogvox · 端到端语音对话</text>
+  <text class="mono" x="420" y="48">2025-02 → 2026-08 · 274 commits</text>
+  <!-- RVQ codec grid -->
+  <g transform="translate(428,76)">
+    <rect class="cell famber"    x="0"  y="0"  width="10" height="10" rx="2"/>
+    <rect class="cell famber c2" x="14" y="0"  width="10" height="10" rx="2"/>
+    <rect class="cell famber c3" x="28" y="0"  width="10" height="10" rx="2"/>
+    <rect class="cell famber c4" x="42" y="0"  width="10" height="10" rx="2"/>
+    <rect class="cell famber c5" x="0"  y="14" width="10" height="10" rx="2"/>
+    <rect class="cell famber c6" x="14" y="14" width="10" height="10" rx="2"/>
+    <rect class="cell famber c7" x="28" y="14" width="10" height="10" rx="2"/>
+    <rect class="cell famber c8" x="42" y="14" width="10" height="10" rx="2"/>
+    <rect class="cell famber c3" x="0"  y="28" width="10" height="10" rx="2"/>
+    <rect class="cell famber c5" x="14" y="28" width="10" height="10" rx="2"/>
+    <rect class="cell famber c7" x="28" y="28" width="10" height="10" rx="2"/>
+    <rect class="cell famber c2" x="42" y="28" width="10" height="10" rx="2"/>
+  </g>
+  <text class="lb" x="424" y="134">RVQ codec tokens</text>
+  <path class="loop amber" d="M492 96 C 512 96, 512 96, 528 96"/>
+  <!-- dialogue bubbles alternating -->
+  <g transform="translate(536,64)">
+    <rect x="0" y="0" width="86" height="26" rx="9" fill="none" stroke="#d97706" stroke-width="1.6"/>
+    <circle class="cell famber c2" cx="16" cy="13" r="3"/><circle class="cell famber c4" cx="30" cy="13" r="3"/><circle class="cell famber c6" cx="44" cy="13" r="3"/>
+    <rect class="caret famber" x="56" y="7" width="2.4" height="13" rx="1"/>
+    <rect x="30" y="36" width="86" height="26" rx="9" fill="none" stroke="#2563eb" stroke-width="1.6"/>
+    <circle class="cell fblue c3" cx="46" cy="49" r="3"/><circle class="cell fblue c5" cx="60" cy="49" r="3"/><circle class="cell fblue c7" cx="74" cy="49" r="3"/>
+  </g>
+  <text class="lb" x="540" y="146">统一 token · 对话 LM · KV-cache 流式生成</text>
+  <path class="loop blue" d="M640 108 C 664 108, 664 60, 636 60" />
+
+  <!-- ═══ timeline axis ═══ -->
+  <g transform="translate(30,196)">
+    <path class="axis" d="M0 20 L 700 20"/>
+    <path class="axis" d="M694 15 L 700 20 L 694 25"/>
+    <rect x="0"  y="14" width="452" height="12" rx="6" fill="#2563eb" opacity=".25"/>
+    <rect x="30" y="14" width="468" height="12" rx="6" fill="#d97706" opacity=".22"/>
+    <text class="mono" x="0"   y="44">2025-01</text>
+    <text class="mono" x="216" y="44">2025-10</text>
+    <text class="mono" x="430" y="44">2026-03</text>
+    <text class="mono" x="640" y="44">2026-08</text>
+    <text class="lb" x="240" y="-2">585 次提交 · 每一次都带构建/测试/格式检查回执 · 合成数据 · 无预训练权重</text>
+  </g>
+</svg>

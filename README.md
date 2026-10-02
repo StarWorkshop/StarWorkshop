@@ -2,7 +2,6 @@
 
 ![Zheng Han — 语音识别 × 端到端语音大模型](assets/header.svg)
 
-[![Jinan University](https://img.shields.io/badge/Soochow_University-%E8%8B%8F%E5%B7%9E%E5%A4%A7%E5%AD%A6-2563eb?style=flat-square)](https://github.com/StarWorkshop)
 ![speech recognition](https://img.shields.io/badge/focus-speech_recognition-d97706?style=flat-square)
 ![end-to-end spoken LM](https://img.shields.io/badge/focus-end--to--end_spoken_LM-2563eb?style=flat-square)
 ![streaming-native](https://img.shields.io/badge/streaming--native-bounded_buffers-5c6b85?style=flat-square)
